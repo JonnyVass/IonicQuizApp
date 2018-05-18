@@ -13,25 +13,72 @@ export class HomePage {
   public btn4 = 'dark';
   public btn5 = 'dark';
 
-  public items = [{ label: "Fructokinase0", order: 1 }, { label: "Fructokinase1", order: 2 }, { label: "Fructokinase2", order: 3 }, { label: "Fructokinase3", order: 4 }];
-  public selectedQuestion = { correctAns: 1, userAns: -1, questions: this.items };
+  // public resultIcon = "checkmark";
+
+  // Selected Question
+  public items1 = [{ label: "Fructokinase0", order: 1 }, { label: "Fructokinase1", order: 2 }, { label: "Fructokinase2", order: 3 }, { label: "Fructokinase3", order: 4 }];
+  public selectedQuestion = { correctAns: -1, userAns: -1, questions: [{ label: "loading", order: 1 }] };
+
+
+  public items2 = [{ label: "q1", order: 1 }, { label: "q2", order: 2 }, { label: "q3", order: 3 }, { label: "q4", order: 4 }];
+
+  // All Questions
+  public questionList = [{ correctAns: 1, userAns: -1, questions: this.items1 }, { correctAns: 1, userAns: -1, questions: this.items2 }];
+
+  public qCount = 0;
 
   constructor(public navCtrl: NavController) {
     console.log('constructor()');
+    this.selectedQuestion = this.questionList[this.qCount];
   }
-  
+
   itemSelected(vo) {
+    if (this.selectedQuestion.userAns !== -1) {
+      console.log("already attenpted.. return")
+      console.log("this.selectedQuestion.userAns = " + this.selectedQuestion.userAns);
+      return;
+    }
     console.log('itemSelected()');
 
-    this.items.forEach(element => {
+    this.selectedQuestion.questions.forEach(element => {
       if (vo === element) {
-        var color = (this.selectedQuestion.correctAns === vo.order) ? 'primary' : 'danger';
+        var color = (this.selectedQuestion.correctAns === vo.order) ? 'secondary' : 'danger';
         this.updateColor(vo.order, color);
+        this.selectedQuestion.userAns = vo.order;
       } else if (this.selectedQuestion.correctAns === element.order) {
-        this.updateColor(element.order, 'primary');
+        this.updateColor(element.order, 'secondary');
       }
     });
   }
+
+  gotoNext() {
+    console.log('gotoNext');
+    this.defaultButtonColors();
+    this.qCount++;
+    this.selectedQuestion = this.questionList[this.qCount];
+    this.updateAnsweredQuestionColors();
+  }
+
+  gotoPreviuos() {
+    console.log('gotoPreviuos');
+    this.defaultButtonColors();
+    this.qCount--;
+    this.selectedQuestion = this.questionList[this.qCount];
+    this.updateAnsweredQuestionColors();
+  }
+
+  updateAnsweredQuestionColors() {
+    if (this.selectedQuestion.userAns !== -1) {
+      if (this.selectedQuestion.correctAns !== this.selectedQuestion.userAns) {
+        this.updateColor(this.selectedQuestion.userAns, 'danger');
+        console.log('update user wrong selection');
+      }
+
+      this.updateColor(this.selectedQuestion.correctAns, 'secondary');
+      console.log('update correct');
+    }
+  }
+
 
   updateColor(index, color) {
     console.log('updateColor(), index = ' + index + " color = " + color)
@@ -68,6 +115,14 @@ export class HomePage {
 
     }
     return this.btn1;
+  }
+
+  defaultButtonColors() {
+    this.btn1 = 'dark';
+    this.btn2 = 'dark';
+    this.btn3 = 'dark';
+    this.btn4 = 'dark';
+    this.btn5 = 'dark';
   }
 
 }

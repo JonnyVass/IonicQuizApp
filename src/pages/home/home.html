@@ -1,27 +1,33 @@
-<div class="header" style="background-color: #27BED3">
+<ion-content>
+  <div class="header text-center" style="background-color: #27BED3">
+    <h4>Molecular Biology</h4>
+    <p>Question 1/20</p>
 
-  <h4>Molecular Biology</h4>
-  <p>Question 1/20</p>
+    <h4>Which of the following enzymes convert glucose into glucose-6-p during glycosis ?</h4>
 
-  <h4>Which of the following enzymes convert glucose into glucose-6-p during glycosis ?</h4>
+  </div>
 
-</div>
+  <div padding>
+    <ion-list>
+      <button *ngFor="let vo of selectedQuestion.questions" ion-button outline round block [color]="getColorVar(vo.order)" (click)="itemSelected(vo)">{{vo.label}}</button>
+    </ion-list>
+    
+    <ion-grid>
+      <ion-row text-center>
+        <ion-col><button ion-button round block outline icon-left padding (click)="gotoPreviuos()">    
+           <ion-icon name="arrow-back"></ion-icon> Previous
+        </button></ion-col>
+       
+        <ion-col>
+          <button ion-button round block outline icon-left padding (click)="gotoNext()">                           
+          Next
+           <ion-icon name="arrow-forward"></ion-icon>
+        </button></ion-col>
+      </ion-row>
+    </ion-grid>
 
-<!--<ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-    {{ item }}
-  </button>-->
-<!--</ion-list>-->
 
-<!--<div padding>
-    <button ion-button outline round block [color]="getColorVar(1)" (click)='clickHandler($event)'>Fructokinase</button>
-    <button ion-button outline round block [color]="btn2">Hexokinase</button>
-    <button ion-button outline round block color='dark'>PEP carboxykinase</button>
-    <button ion-button outline round block color='dark'>Priruvate Carboxylase</button>
-  </div>-->
+  </div>
 
-<div padding>
-  <button *ngFor="let vo of items" let i=i ndex ion-button outline round block [color]="getColorVar(vo.order)" (click)="itemSelected(vo)">{{vo.label}}</button>
-</div>
 
 </ion-content>
