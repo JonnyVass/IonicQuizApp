@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { QuizServiceProvider } from '../providers/quiz-service/quiz-service';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { QuizServiceProvider } from '../providers/quiz-service/quiz-service';
     HomePage
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,    
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

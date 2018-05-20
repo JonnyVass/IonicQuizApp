@@ -1,3 +1,4 @@
+import { QuizServiceProvider } from './../../providers/quiz-service/quiz-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -13,22 +14,19 @@ export class HomePage {
   public btn4 = 'dark';
   public btn5 = 'dark';
 
-  // public resultIcon = "checkmark";
-
-  // Selected Question
-  public items1 = [{ label: "Fructokinase0", order: 1 }, { label: "Fructokinase1", order: 2 }, { label: "Fructokinase2", order: 3 }, { label: "Fructokinase3", order: 4 }];
-  public selectedQuestion = { correctAns: -1, userAns: -1, question:'loading', answers: [{ label: "loading", order: 1 }] };
-
-
-  public items2 = [{ label: "q1", order: 1 }, { label: "q2", order: 2 }, { label: "q3", order: 3 }, { label: "q4", order: 4 }];
-
-  // All Questions
-  public questionList = [{ correctAns: 1, userAns: -1, question:'Which of the following enzymes convert glucose into glucose-6-p during glycosis ?',  answers: this.items1 }, { correctAns: 1, userAns: -1, question:'Q2', answers: this.items2 }];
-
+  
+  public selectedQuestion = { correctAns: -1, userAns: -1, question: 'loading', answers: [{ label: "loading", order: 1 }] };
+  public questionList = [];
   public qCount = 0;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public service: QuizServiceProvider) {
     console.log('constructor()');
+    this.questionList = service.getquestionList();
+  }
+
+  // Life Cycle Events
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter');
     this.selectedQuestion = this.questionList[this.qCount];
   }
 

@@ -1,0 +1,10 @@
+/**
+ Export to JSON plugin for PHPMyAdmin
+ @version 0.1
+ */
+
+// Database 'QuizDB'
+
+// QuizDB.questions
+
+[{"question":"Which of the following enzymes convert glucose into glucose-6-p during glycosis ?","answers":"Fructokinase0","correctAns":"1","userAns":"-1"}, {"question":"Q2","answers":"asnwer1","correctAns":"2","userAns":"-1"}]
