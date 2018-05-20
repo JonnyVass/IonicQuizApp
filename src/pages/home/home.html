@@ -1,15 +1,15 @@
 <ion-content>
   <div class="header text-center" style="background-color: #27BED3">
     <h4>Molecular Biology</h4>
-    <p>Question 1/20</p>
+    <p>Question {{qCount + 1}} /{{questionList.length}}</p>
 
-    <h4>Which of the following enzymes convert glucose into glucose-6-p during glycosis ?</h4>
+    <h4>{{selectedQuestion.question}}</h4>
 
   </div>
 
   <div padding>
     <ion-list>
-      <button *ngFor="let vo of selectedQuestion.questions" ion-button outline round block [color]="getColorVar(vo.order)" (click)="itemSelected(vo)">{{vo.label}}</button>
+      <button *ngFor="let vo of selectedQuestion.answers" ion-button outline round block [color]="getColorVar(vo.order)" (click)="itemSelected(vo)">{{vo.label}}</button>
     </ion-list>
     
     <ion-grid>

@@ -17,13 +17,13 @@ export class HomePage {
 
   // Selected Question
   public items1 = [{ label: "Fructokinase0", order: 1 }, { label: "Fructokinase1", order: 2 }, { label: "Fructokinase2", order: 3 }, { label: "Fructokinase3", order: 4 }];
-  public selectedQuestion = { correctAns: -1, userAns: -1, questions: [{ label: "loading", order: 1 }] };
+  public selectedQuestion = { correctAns: -1, userAns: -1, question:'loading', answers: [{ label: "loading", order: 1 }] };
 
 
   public items2 = [{ label: "q1", order: 1 }, { label: "q2", order: 2 }, { label: "q3", order: 3 }, { label: "q4", order: 4 }];
 
   // All Questions
-  public questionList = [{ correctAns: 1, userAns: -1, questions: this.items1 }, { correctAns: 1, userAns: -1, questions: this.items2 }];
+  public questionList = [{ correctAns: 1, userAns: -1, question:'Which of the following enzymes convert glucose into glucose-6-p during glycosis ?',  answers: this.items1 }, { correctAns: 1, userAns: -1, question:'Q2', answers: this.items2 }];
 
   public qCount = 0;
 
@@ -40,7 +40,7 @@ export class HomePage {
     }
     console.log('itemSelected()');
 
-    this.selectedQuestion.questions.forEach(element => {
+    this.selectedQuestion.answers.forEach(element => {
       if (vo === element) {
         var color = (this.selectedQuestion.correctAns === vo.order) ? 'secondary' : 'danger';
         this.updateColor(vo.order, color);
@@ -52,6 +52,13 @@ export class HomePage {
   }
 
   gotoNext() {
+    if (this.qCount === (this.questionList.length - 1)) {
+      console.log('this.qCount = ' + this.qCount + ' this.questionList.length');
+      console.log('gotoNext() end of all question. Show result view here');
+      alert('Are you sure to complete test?');
+      return;
+    }
+
     console.log('gotoNext');
     this.defaultButtonColors();
     this.qCount++;
@@ -60,6 +67,11 @@ export class HomePage {
   }
 
   gotoPreviuos() {
+    if (this.qCount === 0) {
+      console.log('gotoPreviuos(). This is begining. Can not do action');
+      alert('No Previous question available. Please click next to continue');
+      return;
+    }
     console.log('gotoPreviuos');
     this.defaultButtonColors();
     this.qCount--;
@@ -96,7 +108,6 @@ export class HomePage {
         this.btn4 = color;
         return;
     }
-
   }
 
   getColorVar(index) {
