@@ -2,6 +2,7 @@ import { QuizServiceProvider } from './../../providers/quiz-service/quiz-service
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,14 +15,30 @@ export class HomePage {
   public btn4 = 'dark';
   public btn5 = 'dark';
 
-  
+  public items1 = [{ label: "loading", order: 1 }, { label: "loading", order: 2 }, { label: "loading", order: 3 }, { label: "loading", order: 4 }];
+
+
+  // All Questions
+  public questionList: any = [{ correctAns: 1, userAns: -1, question: 'q1 ?', answers: this.items1 }];
+
+
   public selectedQuestion = { correctAns: -1, userAns: -1, question: 'loading', answers: [{ label: "loading", order: 1 }] };
-  public questionList = [];
+  //public questionList: any;
   public qCount = 0;
 
   constructor(public navCtrl: NavController, public service: QuizServiceProvider) {
     console.log('constructor()');
-    this.questionList = service.getquestionList();
+
+    this.service.getquestionList()
+      .then(data => {
+        this.questionList = data;
+        this.selectedQuestion = data[0];
+        console.log('data loaded from service');
+      });
+
+
+    //  this.questionList = service.getquestionList();
+    //   this.selectedQuestion = this.questionList[this.qCount];
   }
 
   // Life Cycle Events
@@ -31,7 +48,7 @@ export class HomePage {
   }
 
   itemSelected(vo) {
-    if (this.selectedQuestion.userAns !== -1) {
+    if (Number(this.selectedQuestion.userAns) !== -1) {
       console.log("already attenpted.. return")
       console.log("this.selectedQuestion.userAns = " + this.selectedQuestion.userAns);
       return;
