@@ -34,11 +34,7 @@ export class HomePage {
         this.questionList = data;
         this.selectedQuestion = data[0];
         console.log('data loaded from service');
-      });
-
-
-    //  this.questionList = service.getquestionList();
-    //   this.selectedQuestion = this.questionList[this.qCount];
+      });  
   }
 
   // Life Cycle Events
@@ -54,8 +50,7 @@ export class HomePage {
       return;
     }
     console.log('itemSelected()');
-
-    this.selectedQuestion.answers.forEach(element => {
+    this.selectedQuestion.answers.forEach(element => {      
       if (vo === element) {
         var color = (this.selectedQuestion.correctAns === vo.order) ? 'secondary' : 'danger';
         this.updateColor(vo.order, color);
@@ -63,7 +58,7 @@ export class HomePage {
       } else if (this.selectedQuestion.correctAns === element.order) {
         this.updateColor(element.order, 'secondary');
       }
-    });
+    });    
   }
 
   gotoNext() {
@@ -95,7 +90,7 @@ export class HomePage {
   }
 
   updateAnsweredQuestionColors() {
-    if (this.selectedQuestion.userAns !== -1) {
+    if (Number(this.selectedQuestion.userAns) !== -1) {
       if (this.selectedQuestion.correctAns !== this.selectedQuestion.userAns) {
         this.updateColor(this.selectedQuestion.userAns, 'danger');
         console.log('update user wrong selection');
@@ -107,9 +102,9 @@ export class HomePage {
   }
 
 
-  updateColor(index, color) {
+  updateColor(index, color) {  
     console.log('updateColor(), index = ' + index + " color = " + color)
-    switch (index) {
+    switch (Number(index)) {
       case 1:
         this.btn1 = color;
         return;
@@ -127,7 +122,7 @@ export class HomePage {
 
   getColorVar(index) {
     //  console.log('index = ' + index)
-    switch (index) {
+    switch (Number(index)) {
       case 1:
         return this.btn1;
       case 2:
