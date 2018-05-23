@@ -33,9 +33,9 @@ export class QuizServiceProvider {
 
 
 
-  getquestionList() {
+  getquestionList(filename) {
     return new Promise(resolve => {
-      this.http.get('./assets/questions.json').subscribe(data => {
+      this.http.get('./assets/' + filename +'.json').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);

@@ -1,6 +1,7 @@
+import { QuizCompleteViewPage } from './../quiz-complete-view/quiz-complete-view';
 import { QuizServiceProvider } from './../../providers/quiz-service/quiz-service';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
@@ -26,15 +27,19 @@ export class HomePage {
   //public questionList: any;
   public qCount = 0;
 
-  constructor(public navCtrl: NavController, public service: QuizServiceProvider) {
-    console.log('constructor()');
+  public topic = "";
 
-    this.service.getquestionList()
+  constructor(public navCtrl: NavController, public navParams: NavParams, public service: QuizServiceProvider) {
+    console.log('[HomePage] constructor()');
+
+    this.topic = navParams.data.label;
+    
+    this.service.getquestionList(navParams.data.file)
       .then(data => {
         this.questionList = data;
         this.selectedQuestion = data[0];
         console.log('data loaded from service');
-      });  
+      });
   }
 
   // Life Cycle Events
@@ -50,7 +55,7 @@ export class HomePage {
       return;
     }
     console.log('itemSelected()');
-    this.selectedQuestion.answers.forEach(element => {      
+    this.selectedQuestion.answers.forEach(element => {
       if (vo === element) {
         var color = (this.selectedQuestion.correctAns === vo.order) ? 'secondary' : 'danger';
         this.updateColor(vo.order, color);
@@ -58,7 +63,7 @@ export class HomePage {
       } else if (this.selectedQuestion.correctAns === element.order) {
         this.updateColor(element.order, 'secondary');
       }
-    });    
+    });
   }
 
   gotoNext() {
@@ -89,6 +94,10 @@ export class HomePage {
     this.updateAnsweredQuestionColors();
   }
 
+  submitHandler() {
+    this.navCtrl.push(QuizCompleteViewPage)
+  }
+
   updateAnsweredQuestionColors() {
     if (Number(this.selectedQuestion.userAns) !== -1) {
       if (this.selectedQuestion.correctAns !== this.selectedQuestion.userAns) {
@@ -102,7 +111,7 @@ export class HomePage {
   }
 
 
-  updateColor(index, color) {  
+  updateColor(index, color) {
     console.log('updateColor(), index = ' + index + " color = " + color)
     switch (Number(index)) {
       case 1:

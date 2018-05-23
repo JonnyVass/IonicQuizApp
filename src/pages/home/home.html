@@ -1,6 +1,6 @@
 <ion-content>
   <div class="header text-center" style="background-color: #27BED3">
-    <h4>Molecular Biology</h4>
+    <h4>{{this.topic}}</h4>
     <p>Question {{qCount + 1}} /{{questionList.length}}</p>
 
     <h4>{{selectedQuestion.question}}</h4>
@@ -16,6 +16,10 @@
       <ion-row text-center>
         <ion-col><button ion-button round block outline icon-left padding (click)="gotoPreviuos()">    
            <ion-icon name="arrow-back"></ion-icon> Previous
+        </button></ion-col>
+
+        <ion-col><button ion-button round block outline icon-left padding (click)="submitHandler()">    
+          Submit
         </button></ion-col>
        
         <ion-col>

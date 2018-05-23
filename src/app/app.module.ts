@@ -1,3 +1,5 @@
+import { QuizCompleteViewPage } from './../pages/quiz-complete-view/quiz-complete-view';
+import { TopicListViewPage } from './../pages/topic-list-view/topic-list-view';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,23 +14,27 @@ import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TopicListViewPage,
+    QuizCompleteViewPage
   ],
   imports: [
-    BrowserModule,    
+    BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TopicListViewPage,
+    QuizCompleteViewPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     QuizServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
