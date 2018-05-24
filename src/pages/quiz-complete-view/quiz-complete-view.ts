@@ -9,7 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class QuizCompleteViewPage {
 
+  public dataProvider: any = { correctResponse: 0, incorrectResponse: 0, unattemptedQuestion: 0 };
+  public score = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.dataProvider = navParams.data;
+    this.score = this.dataProvider.correctResponse * 4 - this.dataProvider.incorrectResponse;
   }
 
   ionViewDidLoad() {

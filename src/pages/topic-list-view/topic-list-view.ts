@@ -1,13 +1,7 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TopicListViewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController } from 'ionic-angular';
+import { QuizServiceProvider } from "../../providers/quiz-service/quiz-service";
 
 @IonicPage()
 @Component({
@@ -15,14 +9,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'topic-list-view.html',
 })
 export class TopicListViewPage {
+  
+  public dataProvider: any = { title: 'loading', topics: [] };
 
-  public topics = [{ label: 'Topic 1', file:'questions1' }, { label: 'Topic 2', file:'questions2' }];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public service: QuizServiceProvider) {
+    console.log('[TopicListViewPage] constructor()');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TopicListViewPage');
+    console.log('[TopicListViewPage] ionViewDidLoad()');
+    this.service.getQuizPaperList()
+      .then(data => {      
+        this.dataProvider = data;
+      });
   }
 
   itemSelected(vo) {

@@ -2,15 +2,32 @@
   <div class="header text-center" style="background-color: #27BED3">
     <h4>Congratulations!</h4>
     <p>You have completed the quiz!</p>
-
-
-
   </div>
 
   <div padding text-center>
 
-    <br />
-    <br />
+    <ion-grid>
+      <ion-row>
+        <ion-col  col-8 text-right>Correct Response (4 marks)</ion-col>
+        <ion-col text-left><strong>{{this.dataProvider.correctResponse}}</strong></ion-col>
+      </ion-row>
+
+       <ion-row>
+        <ion-col  col-8 text-right>Incorrect Response (-1 marks) </ion-col>
+        <ion-col text-left><strong>{{this.dataProvider.incorrectResponse}}</strong></ion-col>
+      </ion-row>
+
+       <ion-row>
+        <ion-col  col-8 text-right>Unattempted Question (0 mark)</ion-col>
+        <ion-col text-left><strong>{{this.dataProvider.unattemptedQuestion}}</strong></ion-col>
+      </ion-row>
+
+       <ion-row>
+        <ion-col  col-8 text-right>You score = </ion-col>
+        <ion-col text-left><strong>{{this.score}}</strong></ion-col>
+      </ion-row>
+
+    </ion-grid>        
 
     <button ion-button round outline icon-left padding (click)="gotoMainPage()">    
            <ion-icon name="arrow-back"></ion-icon> Goto Home Page

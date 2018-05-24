@@ -1,0 +1,74 @@
+[
+   {
+      "question": "The laryngeal mark airway used for securing airway of a patient in all of the following condtions except?",
+	  "subject": "Anaesthesiology",
+      "answers": [
+         {
+            "label": "In a difficult intubation",
+            "order": "1"
+         },
+         {
+            "label": "In cardiopulmonary resuscitation",
+            "order": "2"
+         },
+         {
+            "label": "In a child undergoing an elective/routine eye surgery",
+            "order": "3"
+         },
+         {
+            "label": "In a patient with a large tumor in the oral cavity",
+            "order": "4"
+         }
+      ],
+      "correctAns": "4",
+      "userAns": "-1"
+   },
+   {
+      "question": "The following are used for treatment of postoperative nausea and vomiting following squint surgery in children except?",
+	  "subject": "Anaesthesiology",
+      "answers": [
+         {
+            "label": "Ketamine",
+            "order": "1"
+         },
+         {
+            "label": "Ondansetron",
+            "order": "2"
+         },
+         {
+            "label": "Propofol",
+            "order": "3"
+         },
+         {
+            "label": "Dexamethasone",
+            "order": "4"
+         }
+      ],
+      "correctAns": "1",
+      "userAns": "-1"
+   },
+   {
+      "question": "Which one of the following anaesthetic agents cause a rise in the Interacranial pressure?",
+	  "subject": "Anaesthesiology",
+      "answers": [
+         {
+            "label": "Sevoflurane",
+            "order": "1"
+         },
+         {
+            "label": "Thiopentane sodium",
+            "order": "2"
+         },
+         {
+            "label": "Liganocaine",
+            "order": "3"
+         },
+         {
+            "label": "Propofol",
+            "order": "4"
+         }
+      ],
+      "correctAns": "1",
+      "userAns": "-1"
+   }
+]

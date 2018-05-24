@@ -16,24 +16,26 @@ export class HomePage {
   public btn4 = 'dark';
   public btn5 = 'dark';
 
-  public items1 = [{ label: "loading", order: 1 }, { label: "loading", order: 2 }, { label: "loading", order: 3 }, { label: "loading", order: 4 }];
+  // public items1 = [{ label: "loading", order: 1 }, { label: "loading", order: 2 }, { label: "loading", order: 3 }, { label: "loading", order: 4 }];
 
 
   // All Questions
-  public questionList: any = [{ correctAns: 1, userAns: -1, question: 'q1 ?', answers: this.items1 }];
-
+  public questionList: any = [{ correctAns: 1, userAns: -1, question: 'q1 ?', answers: [] }];
 
   public selectedQuestion = { correctAns: -1, userAns: -1, question: 'loading', answers: [{ label: "loading", order: 1 }] };
-  //public questionList: any;
   public qCount = 0;
-
   public topic = "";
+
+  // for result page
+  public correctResponse = 0;
+  public incorrectResponse = 0;
+  public attemptedQuestion = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: QuizServiceProvider) {
     console.log('[HomePage] constructor()');
 
     this.topic = navParams.data.label;
-    
+
     this.service.getquestionList(navParams.data.file)
       .then(data => {
         this.questionList = data;
@@ -55,11 +57,17 @@ export class HomePage {
       return;
     }
     console.log('itemSelected()');
+    this.attemptedQuestion++;
     this.selectedQuestion.answers.forEach(element => {
       if (vo === element) {
         var color = (this.selectedQuestion.correctAns === vo.order) ? 'secondary' : 'danger';
         this.updateColor(vo.order, color);
         this.selectedQuestion.userAns = vo.order;
+        if(this.selectedQuestion.correctAns === vo.order) {
+          this.correctResponse ++;
+        }else {
+          this.incorrectResponse++;
+        }
       } else if (this.selectedQuestion.correctAns === element.order) {
         this.updateColor(element.order, 'secondary');
       }
@@ -68,9 +76,7 @@ export class HomePage {
 
   gotoNext() {
     if (this.qCount === (this.questionList.length - 1)) {
-      console.log('this.qCount = ' + this.qCount + ' this.questionList.length');
-      console.log('gotoNext() end of all question. Show result view here');
-      alert('Are you sure to complete test?');
+      alert('Please click sumbit to complete you test.');
       return;
     }
 
@@ -84,7 +90,7 @@ export class HomePage {
   gotoPreviuos() {
     if (this.qCount === 0) {
       console.log('gotoPreviuos(). This is begining. Can not do action');
-      alert('No Previous question available. Please click next to continue');
+      // alert('No Previous question available. Please click next to continue');
       return;
     }
     console.log('gotoPreviuos');
@@ -95,7 +101,7 @@ export class HomePage {
   }
 
   submitHandler() {
-    this.navCtrl.push(QuizCompleteViewPage)
+    this.navCtrl.push(QuizCompleteViewPage, { correctResponse: this.correctResponse, incorrectResponse: this.incorrectResponse, unattemptedQuestion: (this.questionList.length-this.attemptedQuestion) });
   }
 
   updateAnsweredQuestionColors() {

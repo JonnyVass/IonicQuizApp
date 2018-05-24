@@ -1,6 +1,6 @@
 <ion-content>
   <div class="header text-center" style="background-color: #27BED3">
-    <h4>{{this.topic}}</h4>
+    <h4>{{this.topic}} ({{selectedQuestion.subject}})</h4>
     <p>Question {{qCount + 1}} /{{questionList.length}}</p>
 
     <h4>{{selectedQuestion.question}}</h4>
@@ -11,17 +11,13 @@
     <ion-list>
       <button *ngFor="let vo of selectedQuestion.answers" ion-button outline round block [color]="getColorVar(vo.order)" (click)="itemSelected(vo)">{{vo.label}}</button>
     </ion-list>
-    
+
     <ion-grid>
       <ion-row text-center>
         <ion-col><button ion-button round block outline icon-left padding (click)="gotoPreviuos()">    
            <ion-icon name="arrow-back"></ion-icon> Previous
         </button></ion-col>
 
-        <ion-col><button ion-button round block outline icon-left padding (click)="submitHandler()">    
-          Submit
-        </button></ion-col>
-       
         <ion-col>
           <button ion-button round block outline icon-left padding (click)="gotoNext()">                           
           Next
@@ -29,6 +25,10 @@
         </button></ion-col>
       </ion-row>
     </ion-grid>
+
+    <button ion-button round block icon-left padding (click)="submitHandler()">    
+          Submit
+        </button>
 
 
   </div>

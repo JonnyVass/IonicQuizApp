@@ -2,24 +2,40 @@
     p {
         text-align: center
     }
+
     h4 {
         padding: 8px 0;
     }
+
     .button {
         margin: 10px 0;
         padding: 10px 0;
     }
+
     .header {
         color: #fff;
-        padding: 16px 16px 32px 16px;
+        padding: 8px 8px 16px 8px;
     }
+
     ion-icon {
         margin: 8px;
         padding: 8px;
     }
+
     .g-fs-lg {
         font-size: 6em;
     }
+
     .g-ta-center {
         text-align: center;
+    } // Global CSS
+    
+    
+    .button-inner-tl {
+        justify-content: left;
+        padding-left: 16px;
+    }
+
+    .button-md {
+        text-transform: none;
     }

@@ -1,17 +1,14 @@
 <ion-content>
   <div class="header text-center" style="background-color: #27BED3">
-    <h4>WElcome to MCQ</h4>   
+    <h4>{{this.dataProvider.title}}</h4>   
   </div>
 
   <div padding>
     <ion-list>
-      <button *ngFor="let vo of topics" ion-button round block (click)="itemSelected(vo)">{{vo.label}}</button>
+      <button *ngFor="let vo of dataProvider.topics" ion-button round block (click)="itemSelected(vo)">{{vo.label}}</button>
     </ion-list>
-    
-   
-
-
   </div>
 
+  <p>This project was developed by <strong>Thejaswini</strong></p>
 
 </ion-content>
