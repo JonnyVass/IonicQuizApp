@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class QuizServiceProvider {   
 
   constructor(public http: HttpClient) {
-    console.log('Hello QuizServiceProvider Provider');
+    console.log('[QuizServiceProvider] constructor()');
   }
 
   getquestionList(filename) {
@@ -27,12 +26,6 @@ export class QuizServiceProvider {
         console.log(err);
       });
     });
-  }
-
-
-
-  getTitle() {
-    return 'Title from server'
   }
 
 }
